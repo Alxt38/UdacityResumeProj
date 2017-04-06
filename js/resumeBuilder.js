@@ -18,37 +18,59 @@ let work = {
             "location": "Naperville, IL",
             "startDate": "2001-08-01",
             "endDate": "2002-06-01",
-            "description": "Develop medical billing rules in Java in support of automated medical claims processing"
+            "description": "Develop medical billing rules in Java for the automated medical claims processing engine"
         }
     ]
 
 };
 
 let projects = {
-  "projects": [
-      {
-          "title":"myCHEP",
-          "startDate": "2014-10-01",
-          "endDate": "Contineous",
-          "description":"Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
-          "images": ["{url strings to proj images"]
+    "projects": [
+        {
+            "title": "myCHEP",
+            "startDate": "2014-10-01",
+            "endDate": "Contineous",
+            "description": "Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
+            "images": ["{url strings to proj images"]
         }
-  ]  
+    ]
 };
 
 let bio = {
     "name": "Joe Developer",
-    "role": "Frontend Technical Lead Developer",
-    "welcomeMessage": "Its all about the UX",
-    "biopic": "https://robohash.org/JoeDeveloper.png?size=300x175",
-    "skills": ["ECMA5", "Java", "Java EE", "SQL", "Handlebars", "Marionette", "SAP"],
+    "role": "Web Developer",
+    "welcomeMessage": "Its all about UX",
+    "biopic": "https://robohash.org/JoeDeveloper.png?size=200x200",
+    "skills": ["Javascript", "Java", "Java EE", "SQL (Oracle)", "Handlebars", "Marionette", "SAP"],
     "contacts": {
         "mobile": "407.344.4400",
         "email": "alxt38@yahoo.com",
-        "github":"Alxt38",
+        "github": "Alxt38",
         "location": "Orlando, FL",
-        "twitter":""
-    }        
+        "twitter": ""
+    },
+
+    "display": function () {
+        $("#header").prepend(HTMLheaderRole.replace('%data%', bio.role));
+        $('#header').prepend(HTMLheaderName.replace('%data%', bio.name));
+        $('#topContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+        $('#topContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+        $('#topContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
+        if (bio.contacts.twitter) {
+            $('#topContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+        }
+        $('#topContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
+        $('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
+        $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
+        $('#header').append(HTMLskillsStart);
+        bio.skills.forEach( function(skill) {
+            $('#header').append(HTMLskills.replace('%data%',skill));
+        });
+
+
+
+    }
+
 }
 
 let education = {
@@ -71,5 +93,9 @@ let education = {
     ]
 }
 
-let headerName = HTMLheaderName.replace('%data%', bio.name);
-$("#header").append(headerName);
+
+
+
+bio.display();
+
+
