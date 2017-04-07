@@ -6,21 +6,33 @@ let work = {
     "jobs": [
         {
             "employer": "CHEP",
+            "url": "http://chep.com",
             "title": "Sr Web Developer",
             "location": "Orlando, FL",
-            "startDate": "2004-10-14",
-            "endDate": "Present",
+            "dates": "Oct 2004 - Present",
             "description": "Develop dynamic web applications using Java Servlet technology"
         },
         {
-            "employer": "Health Network Systems",
+            "employer": "Concentra formerly Health Network Systems",
+            "url": "http://concentra.com",
             "title": "Sr Java Developer",
             "location": "Naperville, IL",
-            "startDate": "2001-08-01",
-            "endDate": "2002-06-01",
+            "dates": "Aug 2001 - June 2002",
             "description": "Develop medical billing rules in Java for the automated medical claims processing engine"
         }
-    ]
+    ],
+
+    "display": function () {
+        $('#workExperience').append(HTMLworkStart);
+        work.jobs.forEach(function (job) {
+            let empLink = HTMLworkEmployer.replace('#',job.url);
+            empLink = empLink.replace('%data%', job.employer);
+       
+            $('#workExperience').append(empLink + HTMLworkTitle.replace('%data%', job.title));
+            $('#workExperience').append(HTMLworkDates.replace('%data%', job.dates));
+            $('#workExperience').append(HTMLworkDescription.replace('%data%', job.description));
+        });
+    }
 
 };
 
@@ -63,8 +75,8 @@ let bio = {
         $('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
         $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
         $('#header').append(HTMLskillsStart);
-        bio.skills.forEach( function(skill) {
-            $('#header').append(HTMLskills.replace('%data%',skill));
+        bio.skills.forEach(function (skill) {
+            $('#header').append(HTMLskills.replace('%data%', skill));
         });
 
 
@@ -97,5 +109,6 @@ let education = {
 
 
 bio.display();
+work.display();
 
 
