@@ -25,9 +25,9 @@ let work = {
     "display": function () {
         $('#workExperience').append(HTMLworkStart);
         work.jobs.forEach(function (job) {
-            let empLink = HTMLworkEmployer.replace('#',job.url);
+            let empLink = HTMLworkEmployer.replace('#', job.url);
             empLink = empLink.replace('%data%', job.employer);
-       
+
             $('#workExperience').append(empLink + HTMLworkTitle.replace('%data%', job.title));
             $('#workExperience').append(HTMLworkDates.replace('%data%', job.dates));
             $('#workExperience').append(HTMLworkDescription.replace('%data%', job.description));
@@ -40,12 +40,25 @@ let projects = {
     "projects": [
         {
             "title": "myCHEP",
-            "startDate": "2014-10-01",
+            "dates": "10/2014 - Present",
             "endDate": "Contineous",
             "description": "Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
             "images": ["{url strings to proj images"]
         }
-    ]
+    ],
+
+    "display": function () {
+        $('#projects').append(HTMLprojectStart);
+        projects.projects.forEach(function (proj) {
+            $('#projects').append(HTMLprojectTitle.replace('%data%', proj.title));
+            $('#projects').append(HTMLprojectDates.replace('%data%', proj.dates));
+            $('#projects').append(HTMLprojectDescription.replace('%data%', proj.description));
+            proj.images.forEach(function (img) {
+                $('#projects').append(HTMLprojectImage.replace('%data%', img));
+            });
+
+        });
+    }
 };
 
 let bio = {
@@ -78,9 +91,6 @@ let bio = {
         bio.skills.forEach(function (skill) {
             $('#header').append(HTMLskills.replace('%data%', skill));
         });
-
-
-
     }
 
 }
@@ -102,7 +112,11 @@ let education = {
             degree: "Bachelors",
             major: ["Computer Science"]
         }
-    ]
+    ],
+    
+    "display": function() {
+        
+    }
 }
 
 
@@ -110,5 +124,7 @@ let education = {
 
 bio.display();
 work.display();
+projects.display();
+education.display();
 
 
