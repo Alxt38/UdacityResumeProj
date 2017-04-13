@@ -41,7 +41,6 @@ let projects = {
         {
             "title": "myCHEP",
             "dates": "10/2014 - Present",
-            "endDate": "Contineous",
             "description": "Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
             "images": ["{url strings to proj images"]
         }
@@ -101,21 +100,24 @@ let education = {
             "name": "Florida Atlantic University",
             "city": "Boca Raton, FL",
             "degree": "Bachelors",
-            "startDate": "1992-08",
+            "dates": "1992-08",
             "endDate": "1994-08",
             "url": "www.fau.edu",
             "majors": ["Computer Science"]
-        },
-        {
-            name: "Florida Atlantic University",
-            city: "Boca Raton, FL",
-            degree: "Bachelors",
-            major: ["Computer Science"]
         }
     ],
-    
-    "display": function() {
-        
+
+    "display": function () {
+        $('education').append(HTMLschoolStart);
+        education.schools.forEach(function (school) {
+            $('education').append(HTMLschoolName.replace('%data%', school.name));
+            $('education').append(HTMLschoolDegree.replace('%data%', school.degree));
+            $('education').append(HTMLschoolDates.replace('%data%', school.dates));
+            $('education').append(HTMLschoolLocation.replace('%data%', school.city));
+            school.major.forEach(function (major) {
+                $('education').append(HTMLschoolMajor.replace('%data%', major));
+            });
+        });
     }
 }
 
