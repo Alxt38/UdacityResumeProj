@@ -36,29 +36,6 @@ let work = {
 
 };
 
-let projects = {
-    "projects": [
-        {
-            "title": "myCHEP",
-            "dates": "10/2014 - Present",
-            "description": "Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
-            "images": ["{url strings to proj images"]
-        }
-    ],
-
-    "display": function () {
-        $('#projects').append(HTMLprojectStart);
-        projects.projects.forEach(function (proj) {
-            $('#projects').append(HTMLprojectTitle.replace('%data%', proj.title));
-            $('#projects').append(HTMLprojectDates.replace('%data%', proj.dates));
-            $('#projects').append(HTMLprojectDescription.replace('%data%', proj.description));
-            proj.images.forEach(function (img) {
-                $('#projects').append(HTMLprojectImage.replace('%data%', img));
-            });
-
-        });
-    }
-};
 
 let bio = {
     "name": "Joe Developer",
@@ -84,6 +61,13 @@ let bio = {
             $('#topContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
         }
         $('#topContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
+        $('#footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+        $('#footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+        $('#footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
+        if (bio.contacts.twitter) {
+            $('#footerContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+        }
+        $('#footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
         $('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
         $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
         $('#header').append(HTMLskillsStart);
@@ -94,32 +78,63 @@ let bio = {
 
 }
 
+let projects = {
+    "projects": [
+        {
+            "title": "myCHEP",
+            "dates": "10/2014 - Present",
+            "description": "Modern web application to replace and aging portal applications which support the global business by allowing customers to Order, Transfer, manage their shipping containers, also allowing customers to query thieir Invoices, inventory reports, etc",
+            "images": ["./images/myCHEP_sm.png"]
+        }
+    ],
+
+    "display": function () {
+        $('#projects').append(HTMLprojectStart);
+        projects.projects.forEach(function (proj) {
+            $('#projects').append(HTMLprojectTitle.replace('%data%', proj.title));
+            $('#projects').append(HTMLprojectDates.replace('%data%', proj.dates));
+            $('#projects').append(HTMLprojectDescription.replace('%data%', proj.description));
+            proj.images.forEach(function (img) {
+                $('#projects').append(HTMLprojectImage.replace('%data%', img));
+            });
+
+        });
+    }
+};
+
 let education = {
-    schools: [
+    "schools": [
         {
             "name": "Florida Atlantic University",
             "city": "Boca Raton, FL",
             "degree": "Bachelors",
-            "dates": "1992-08",
-            "endDate": "1994-08",
-            "url": "www.fau.edu",
+            "dates": "08/1992 - 08/1994",
+            "url": "https://fau.edu",
+            "majors": ["Computer Science"]
+        },
+        {
+            "name": "Broward College",
+            "city": "Fort Lauderdale, FL",
+            "degree": "Associates",
+            "dates": "08/1990 - 08/1992",
+            "url": "https://fau.edu",
             "majors": ["Computer Science"]
         }
     ],
 
     "display": function () {
-        $('education').append(HTMLschoolStart);
+        $('#education').append(HTMLschoolStart);
         education.schools.forEach(function (school) {
-            $('education').append(HTMLschoolName.replace('%data%', school.name));
-            $('education').append(HTMLschoolDegree.replace('%data%', school.degree));
-            $('education').append(HTMLschoolDates.replace('%data%', school.dates));
-            $('education').append(HTMLschoolLocation.replace('%data%', school.city));
-            school.major.forEach(function (major) {
-                $('education').append(HTMLschoolMajor.replace('%data%', major));
+            $('#education').append(HTMLschoolName.replace('%data%', school.name));
+            $('#education').append(HTMLschoolDegree.replace('%data%', school.degree));
+            $('#education').append(HTMLschoolDates.replace('%data%', school.dates));
+            $('#education').append(HTMLschoolLocation.replace('%data%', school.city));
+            school.majors.forEach(function (major) {
+                $('#education').append(HTMLschoolMajor.replace('%data%', major));
             });
         });
     }
-}
+};
 
 
 
