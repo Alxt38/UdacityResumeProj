@@ -2,12 +2,14 @@
  This is empty on purpose! Your code to build the resume will go here.
  */
 
-var bio = {
+/*jshint esnext: true */
+
+let bio = {
     "name": "Joe Developer",
     "role": "Web Developer",
     "welcomeMessage": "Its all about UX",
     "biopic": "https://robohash.org/JoeDeveloper.png?size=200x200",
-    "skills": ["Javascript", "Java", "Java EE", "SQL (Oracle)", "Handlebars", "Marionette", "SAP"],
+    "skills": ["Javascript - Backbone, Marionette, jQuery, Handlbars, CSS", "Java - SCJP-v1.4, current 1.7", "Java EE - JAX-RS/WS, JDBC, JPA, EJBs", "SQL (Oracle, MySQL)", "SAP"],
     "contacts": {
         "mobile": "407.344.4400",
         "email": "alxt38@yahoo.com",
@@ -19,20 +21,13 @@ var bio = {
     "display": function () {
         $("#header").prepend(HTMLheaderRole.replace('%data%', bio.role));
         $('#header').prepend(HTMLheaderName.replace('%data%', bio.name));
-        $('#topContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
-        $('#topContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
-        $('#topContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
+        $('#topContacts, #footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+        $('#topContacts, #footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+        $('#topContacts, #footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
         if (bio.contacts.twitter) {
-            $('#topContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+            $('#topContacts, #footerContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
         }
-        $('#topContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
-        $('#footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
-        $('#footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
-        $('#footerContacts').append(HTMLgithub.replace('%data%', bio.contacts.github));
-        if (bio.contacts.twitter) {
-            $('#footerContacts').append(HTMLtwitter.replace('%data%', bio.contacts.twitter));
-        }
-        $('#footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
+        $('#topContacts, #footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.location));
         $('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
         $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
         $('#header').append(HTMLskillsStart);
@@ -43,7 +38,7 @@ var bio = {
 
 };
 
-var work = {
+let work = {
     "jobs": [
         {
             "employer": "CHEP",
@@ -66,19 +61,19 @@ var work = {
     "display": function () {
         $('#workExperience').append(HTMLworkStart);
         work.jobs.forEach(function (job) {
-            var empLink = HTMLworkEmployer.replace('#', job.url);
+            let empLink = HTMLworkEmployer.replace('#', job.url);
             empLink = empLink.replace('%data%', job.employer);
 
-            $('#workExperience').append(empLink + HTMLworkTitle.replace('%data%', job.title));
-            $('#workExperience').append(HTMLworkDates.replace('%data%', job.dates));
-            $('#workExperience').append(HTMLworkLocation.replace('%data%', job.location));
-            $('#workExperience').append(HTMLworkDescription.replace('%data%', job.description));
+            $('.work-entry:last').append(empLink + HTMLworkTitle.replace('%data%', job.title));
+            $('.work-entry:last').append(HTMLworkDates.replace('%data%', job.dates));
+            $('.work-entry:last').append(HTMLworkLocation.replace('%data%', job.location));
+            $('.work-entry:last').append(HTMLworkDescription.replace('%data%', job.description));
         });
     }
 
 };
 
-var projects = {
+let projects = {
     "projects": [
         {
             "title": "myCHEP",
@@ -102,7 +97,7 @@ var projects = {
     }
 };
 
-var education = {
+let education = {
     "schools": [
         {
             "name": "Florida Atlantic University",
@@ -138,7 +133,7 @@ var education = {
 
 
 
-
+// Call Display Routines of Above Objects. 
 bio.display();
 work.display();
 projects.display();
