@@ -2,42 +2,7 @@
  This is empty on purpose! Your code to build the resume will go here.
  */
 
-let work = {
-    "jobs": [
-        {
-            "employer": "CHEP",
-            "url": "http://chep.com",
-            "title": "Sr Web Developer",
-            "location": "Orlando, FL",
-            "dates": "Oct 2004 - Present",
-            "description": "Develop dynamic web applications using Java Servlet technology"
-        },
-        {
-            "employer": "Concentra formerly Health Network Systems",
-            "url": "http://concentra.com",
-            "title": "Sr Java Developer",
-            "location": "Naperville, IL",
-            "dates": "Aug 2001 - June 2002",
-            "description": "Develop medical billing rules in Java for the automated medical claims processing engine"
-        }
-    ],
-
-    "display": function () {
-        $('#workExperience').append(HTMLworkStart);
-        work.jobs.forEach(function (job) {
-            let empLink = HTMLworkEmployer.replace('#', job.url);
-            empLink = empLink.replace('%data%', job.employer);
-
-            $('#workExperience').append(empLink + HTMLworkTitle.replace('%data%', job.title));
-            $('#workExperience').append(HTMLworkDates.replace('%data%', job.dates));
-            $('#workExperience').append(HTMLworkDescription.replace('%data%', job.description));
-        });
-    }
-
-};
-
-
-let bio = {
+var bio = {
     "name": "Joe Developer",
     "role": "Web Developer",
     "welcomeMessage": "Its all about UX",
@@ -76,9 +41,44 @@ let bio = {
         });
     }
 
-}
+};
 
-let projects = {
+var work = {
+    "jobs": [
+        {
+            "employer": "CHEP",
+            "url": "http://chep.com",
+            "title": "Sr Web Developer",
+            "location": "Orlando, FL",
+            "dates": "Oct 2004 - Present",
+            "description": "Develop dynamic web applications using Java Servlet technology"
+        },
+        {
+            "employer": "Concentra formerly Health Network Systems",
+            "url": "http://concentra.com",
+            "title": "Sr Java Developer",
+            "location": "Naperville, IL",
+            "dates": "Aug 2001 - June 2002",
+            "description": "Develop medical billing rules in Java for the automated medical claims processing engine"
+        }
+    ],
+
+    "display": function () {
+        $('#workExperience').append(HTMLworkStart);
+        work.jobs.forEach(function (job) {
+            var empLink = HTMLworkEmployer.replace('#', job.url);
+            empLink = empLink.replace('%data%', job.employer);
+
+            $('#workExperience').append(empLink + HTMLworkTitle.replace('%data%', job.title));
+            $('#workExperience').append(HTMLworkDates.replace('%data%', job.dates));
+            $('#workExperience').append(HTMLworkLocation.replace('%data%', job.location));
+            $('#workExperience').append(HTMLworkDescription.replace('%data%', job.description));
+        });
+    }
+
+};
+
+var projects = {
     "projects": [
         {
             "title": "myCHEP",
@@ -102,11 +102,11 @@ let projects = {
     }
 };
 
-let education = {
+var education = {
     "schools": [
         {
             "name": "Florida Atlantic University",
-            "city": "Boca Raton, FL",
+            "location": "Boca Raton, FL",
             "degree": "Bachelors",
             "dates": "08/1992 - 08/1994",
             "url": "https://fau.edu",
@@ -114,7 +114,7 @@ let education = {
         },
         {
             "name": "Broward College",
-            "city": "Fort Lauderdale, FL",
+            "location": "Fort Lauderdale, FL",
             "degree": "Associates",
             "dates": "08/1990 - 08/1992",
             "url": "https://fau.edu",
@@ -128,7 +128,7 @@ let education = {
             $('#education').append(HTMLschoolName.replace('%data%', school.name));
             $('#education').append(HTMLschoolDegree.replace('%data%', school.degree));
             $('#education').append(HTMLschoolDates.replace('%data%', school.dates));
-            $('#education').append(HTMLschoolLocation.replace('%data%', school.city));
+            $('#education').append(HTMLschoolLocation.replace('%data%', school.location));
             school.majors.forEach(function (major) {
                 $('#education').append(HTMLschoolMajor.replace('%data%', major));
             });
@@ -143,5 +143,7 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+ $('#mapDiv').append(googleMap);
+
 
 
